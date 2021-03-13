@@ -40,14 +40,16 @@ def home():
     return (
         f'Available routes:<br/>'
         f'1. For precipitation levels for each day between 8/23/2016 and 8/23/2017<br/>'
-        f'/api/v1.0/precipitation<br/>'
-        f'2. For a list of stations<br/>'
-        f'/api/v1.0/stations<br/>'
-        f'3. For temperature observation for USC00519281 for each day between 8/23/2016 and 8/23/2017<br/>'
-        f'/api/v1.0/tobs<br/>'
-        f'4. For the minimum, maximum and average temperature for one specific date<br/>'
-        f'/api/v1.0/<date><br/>'
-        f'5. For the minimum, maximum and average temperature fora range of dates<br/>'
+        f'/api/v1.0/precipitation<br/><br/>'
+        f'2. For a list of stations:<br/>'
+        f'/api/v1.0/stations<br/><br/>'
+        f'3. For temperature observation for station USC00519281 for each day between 8/23/2016 and 8/23/2017:<br/>'
+        f'/api/v1.0/tobs<br/><br/>'
+        f'4. For the minimum, maximum and average temperature for your choice of start date until 8/23/2017:<br/>'
+        f'Hint: the date must be in YYYY-MM-DD format<br/>'
+        f'/api/v1.0/<date><br/><br/>'
+        f'5. For the minimum, maximum and average temperature for your choice of start and end dates:<br/>'
+        f'Hint: the dates must be in YYYY-MM-DD format and the be within the available dates 2010-01-01 and 2017-08-23.<br/>'
         f'/api/v1.0/<start_date>/<end_date>'
     )
 
@@ -119,19 +121,39 @@ def date(start_date):
 
     #Return a JSON list of the minimum temperature, the average temperature,
     # and the max temperature for a given start or start-end range
-    try:
-        tmax = session.query(func.max(Measurement.tobs)).filter(Measurement.date>= start_date).scalar()
-        tmin = session.query(func.min(Measurement.tobs)).filter(Measurement.date>= start_date).scalar()
-        tavg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date>= start_date).scalar()
+    tmax = session.query(func.max(Measurement.tobs)).filter(Measurement.date>= start_date).scalar()
+    tmin = session.query(func.min(Measurement.tobs)).filter(Measurement.date>= start_date).scalar()
+    tavg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date>= start_date).scalar()
 
-        start_date_dict = {'Maximum temperature': tmax,
+    session.close()
+
+    start_date_dict = {'Maximum temperature': tmax,
                         'Minimum temperature': tmin,
                         'Average temperature': tavg}
 
-        return jsonify(start_date_dict)
-    except:
-        return jsonify({"error": f"{start_date} not found. Make sure date is in YYYY-MM-DD format."}), 404    
+    return jsonify(start_date_dict)
+        
+@app.route('/api/v1.0/<start_date>/<end_date>')
+def range_date(start_date, end_date):
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
 
+    #Return a JSON list of the minimum temperature, the average temperature,
+    # and the max temperature for a given start or start-end range
+    tmax = session.query(func.max(Measurement.tobs)).filter(Measurement.date>= start_date).\
+        filter(Measurement.date<= end_date).scalar()
+    tmin = session.query(func.min(Measurement.tobs)).filter(Measurement.date>= start_date).\
+        filter(Measurement.date<= end_date).scalar()
+    tavg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date>= start_date).\
+        filter(Measurement.date<= end_date).scalar()
+
+    session.close()
+
+    range_date_dict = {'Maximum temperature': tmax,
+                        'Minimum temperature': tmin,
+                        'Average temperature': tavg}
+
+    return jsonify(range_date_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)    
