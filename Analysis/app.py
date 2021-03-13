@@ -38,19 +38,20 @@ app = Flask(__name__)
 def home():
     print("List all available API routes")
     return (
-        f'Available routes:<br/>'
+        f'<h1>Hawaiian weather API from 1/1/2010-8/23/2017</h1>'
+        f'<h2>Available routes:</h2>'
         f'1. For precipitation levels for each day between 8/23/2016 and 8/23/2017<br/>'
-        f'/api/v1.0/precipitation<br/><br/>'
+        f'<a href="/api/v1.0/precipitation">/api/v1.0/precipitation</a><br/><br/>'
         f'2. For a list of stations:<br/>'
-        f'/api/v1.0/stations<br/><br/>'
+        f'<a href="/api/v1.0/stations">/api/v1.0/stations</a><br/><br/>'
         f'3. For temperature observation for station USC00519281 for each day between 8/23/2016 and 8/23/2017:<br/>'
-        f'/api/v1.0/tobs<br/><br/>'
+        f'<a href="/api/v1.0/tobs">/api/v1.0/tobs</a><br/><br/>'
         f'4. For the minimum, maximum and average temperature for your choice of start date until 8/23/2017:<br/>'
-        f'Hint: the date must be in YYYY-MM-DD format<br/>'
-        f'/api/v1.0/<date><br/><br/>'
+        f'<small>Hint: the date must be in YYYY-MM-DD format</small><br/>'
+        f'<a href="/api/v1.0/">/api/v1.0/<i>start_date</i></a><br/><br/>'
         f'5. For the minimum, maximum and average temperature for your choice of start and end dates:<br/>'
-        f'Hint: the dates must be in YYYY-MM-DD format and the be within the available dates 2010-01-01 and 2017-08-23.<br/>'
-        f'/api/v1.0/<start_date>/<end_date>'
+        f'<small>Hint: the dates must be in YYYY-MM-DD format and the be within the available dates 2010-01-01 and 2017-08-23.</small><br/>'
+        f'<a href="/api/v1.0/">/api/v1.0/<i>start_date</i>/<i>end_date</i></a>'
     )
 
 @app.route('/api/v1.0/precipitation')
