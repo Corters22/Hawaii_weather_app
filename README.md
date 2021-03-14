@@ -42,8 +42,4 @@ From the home page, you can access five different routes
 4. The minimum, maximum and average temperature for a date range where you pick any start date between 1/1/2010 and 8/22/2017 untl the end date 8/23/2017 
 5. The minimum, maximum and average temperature for any date range you choose between 1/1/2010 and 8/23/2017
 
-## Bonus: Other Recommended Analyses
 
-### Temperature Analysis I
-
-### Temperature Analysis II
