@@ -16,13 +16,13 @@ We start this analysis with figuring out the most recent date of our data. From 
 
 With the precipitation data, we also performed a summary statistical description.
 
-![summary](Images/summary_screenshot.png)
+![summary](Images/summary_screenshot.PNG)
 
 ### Station Analysis
 
 After performing the precipitation analysis, we looked into the data of the individual stations. First, we calculated the count of temperature measurements performed by each station and concluded that Station ID USC00519281 had the most. From there we analyzed the minimum, maximum and average temperature for station USC00519281.
 
-![temp](Images/temp_screenshot.png)
+![temp](Images/temp_screenshot.PNG)
 
 Below is a histogram chart showing the frequency of temperature observations within station USC00519281.
 
