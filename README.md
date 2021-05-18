@@ -6,7 +6,7 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
 
 ## Step 1 - Climate Analysis and Exploration
 
-We will be using Python, SQL Alchemy and a sqlite file for this analysis. You can find the dataset (hawaii.sqlite) in the [Resources](https://github.com/Corters22/sqlalchemy-challange/tree/main/Resources) directory and the code Climate Analysis and Exploration.ipynb in the [Analysis](https://github.com/Corters22/sqlalchemy-challange/tree/main/Analysis) directory.
+We will be using Python, SQL Alchemy and a sqlite file for this analysis. You can find the dataset (hawaii.sqlite) in the [Resources](Resources) directory and the code Climate Analysis and Exploration.ipynb in the [Analysis](Analysis) directory.
 
 ### Precipitation Analysis
 
@@ -30,7 +30,7 @@ Below is a histogram chart showing the frequency of temperature observations wit
 
 ## Step 2 - Climate App
 
- With the introduction of SQL Alchemy, we also are introducing flask through Python and creating our own API. This file is also in the [Analysis](https://github.com/Corters22/sqlalchemy-challange/tree/main/Analysis) directory in app.py. This file must be run while in the Resources directory. 
+ With the introduction of SQL Alchemy, we also are introducing flask through Python and creating our own API. This file is also in the [Analysis](Analysis) directory in app.py. This file must be run while in the Resources directory. 
 
 ### Routes
 
